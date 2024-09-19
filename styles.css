@@ -29,6 +29,9 @@ body {
   border: 2px dashed #4354ff;
   border-radius: 10px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   color: #0d2966;
   margin-bottom: 20px;
@@ -73,6 +76,7 @@ input[type="text"] {
   cursor: pointer;
   width: 100%;
   margin-top: 20px;
+  height: 200px; /* Matches height of the upload area */
 }
 
 .submit-btn:hover {
