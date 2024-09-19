@@ -56,7 +56,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"] {
+select {
   padding: 10px;
   border: 1px solid #4354ff;
   border-radius: 5px;
@@ -82,4 +82,3 @@ input[type="text"] {
 .submit-btn:hover {
   background-color: #3343cc;
 }
-
