@@ -7,12 +7,11 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <div class="top-bar">
     <img src="clever-logo.png" alt="Logo" class="logo">
-    <div class="upload-area" id="uploadfile">
-      Drag and Drop a file here or click to upload
-    </div>
+  </div>
 
+  <div class="container">
     <div class="form-area">
       <label for="distributor">Distributor:</label>
       <input type="text" id="distributor" value="SMART4INVEST" placeholder="Enter distributor">
@@ -20,10 +19,17 @@
       <label for="country">Country:</label>
       <input type="text" id="country" value="Belgique" placeholder="Enter country">
     </div>
+
+    <div class="upload-area" id="uploadfile">
+      Drag and Drop a file here or click to upload
+    </div>
+
+    <button class="submit-btn" id="submit-btn">Submit</button>
   </div>
 
   <script>
     const uploadArea = document.getElementById('uploadfile');
+    const submitBtn = document.getElementById('submit-btn');
 
     // Click event to trigger file dialog
     uploadArea.addEventListener('click', () => {
@@ -56,6 +62,17 @@
       const file = e.dataTransfer.files[0];
       if (validateFile(file)) {
         uploadFile(file);
+      }
+    });
+
+    // Submit button click event
+    submitBtn.addEventListener('click', () => {
+      const fileInput = document.querySelector('input[type="file"]');
+      const file = fileInput ? fileInput.files[0] : null;
+      if (file && validateFile(file)) {
+        uploadFile(file);
+      } else {
+        alert('Please upload a valid .xlsx file.');
       }
     });
 
