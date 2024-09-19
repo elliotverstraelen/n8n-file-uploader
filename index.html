@@ -88,7 +88,7 @@
       const formData = new FormData();
       formData.append('file', file);
 
-      fetch('https://primary-production-2dcb.up.railway.app/webhook-test/file-upload', {
+      fetch('https://primary-production-2dcb.up.railway.app/webhook/file-upload', {
         method: 'POST',
         body: formData,
       })
