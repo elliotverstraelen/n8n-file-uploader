@@ -30,16 +30,15 @@
   <script>
     const uploadArea = document.getElementById('uploadfile');
     const submitBtn = document.getElementById('submit-btn');
+    let selectedFile = null;
 
     // Click event to trigger file dialog
     uploadArea.addEventListener('click', () => {
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
       fileInput.onchange = (e) => {
-        const file = e.target.files[0];
-        if (validateFile(file)) {
-          uploadFile(file);
-        }
+        selectedFile = e.target.files[0];
+        updateUploadArea(selectedFile);
       };
       fileInput.click();
     });
@@ -59,20 +58,25 @@
     uploadArea.addEventListener('drop', (e) => {
       e.preventDefault();
       uploadArea.classList.remove('dragover');
-      const file = e.dataTransfer.files[0];
-      if (validateFile(file)) {
-        uploadFile(file);
-      }
+      selectedFile = e.dataTransfer.files[0];
+      updateUploadArea(selectedFile);
     });
+
+    // Update the text in the upload area with the file name
+    function updateUploadArea(file) {
+      if (file) {
+        uploadArea.textContent = file.name;
+      } else {
+        uploadArea.textContent = 'Drag and Drop a file here or click to upload';
+      }
+    }
 
     // Submit button click event
     submitBtn.addEventListener('click', () => {
-      const fileInput = document.querySelector('input[type="file"]');
-      const file = fileInput ? fileInput.files[0] : null;
-      if (file && validateFile(file)) {
-        uploadFile(file);
+      if (selectedFile && validateFile(selectedFile)) {
+        uploadFile(selectedFile);
       } else {
-        alert('Please upload a valid .xlsx file.');
+        alert('Please select a valid .xlsx file.');
       }
     });
 
