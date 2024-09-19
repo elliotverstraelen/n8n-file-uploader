@@ -56,7 +56,7 @@ label {
   margin-bottom: 5px;
 }
 
-select {
+.styled-dropdown {
   padding: 10px;
   border: 1px solid #4354ff;
   border-radius: 5px;
@@ -64,19 +64,24 @@ select {
   color: #0d2966;
   width: 100%;
   margin-bottom: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.styled-dropdown:hover {
+  border-color: #3343cc;
 }
 
 .submit-btn {
   background-color: #4354ff;
   color: white;
-  padding: 10px 20px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   width: 100%;
   margin-top: 20px;
-  height: 200px; /* Matches height of the upload area */
 }
 
 .submit-btn:hover {
