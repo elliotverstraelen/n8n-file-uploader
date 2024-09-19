@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag and Drop File Upload</title>
+  <style>
+    .upload-area {
+      width: 300px;
+      height: 200px;
+      border: 2px dashed #007bff;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      margin: 100px auto;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+    .upload-area.dragover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="upload-area" id="uploadfile">
+    Drag and Drop a file here or click to upload
+  </div>
+
+  <script>
+    const uploadArea = document.getElementById('uploadfile');
+
+    uploadArea.addEventListener('click', () => {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        uploadFile(file);
+      };
+      fileInput.click();
+    });
+
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      uploadFile(file);
+    });
+
+    function uploadFile(file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      fetch('https://your-n8n-instance-url/webhook/<your-webhook-id>', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert('File uploaded successfully!');
+        console.log(result);
+      })
+      .catch(error => {
+        alert('File upload failed!');
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</body>
+</html>
