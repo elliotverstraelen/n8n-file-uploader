@@ -28,7 +28,7 @@
     </div>
 
     <div class="upload-area" id="uploadfile">
-      Drag and Drop a file here or click to upload
+      Drag and Drop a file here or click to upload (.xlsx or .csv)
     </div>
 
     <button class="submit-btn" id="submit-btn">Submit</button>
@@ -74,7 +74,7 @@
       if (file) {
         uploadArea.textContent = file.name;
       } else {
-        uploadArea.textContent = 'Drag and Drop a file here or click to upload';
+        uploadArea.textContent = 'Drag and Drop a file here or click to upload (.xlsx or .csv)';
       }
     }
 
@@ -83,18 +83,18 @@
       if (selectedFile && validateFile(selectedFile)) {
         uploadFile(selectedFile);
       } else {
-        alert('Please select a valid .xlsx file.');
+        alert('Please select a valid .xlsx or .csv file.');
       }
     });
 
     // File validation function
     function validateFile(file) {
-      const allowedExtensions = ['xlsx'];
+      const allowedExtensions = ['xlsx', 'csv'];
       const fileExtension = file.name.split('.').pop().toLowerCase();
       const maxSizeInMB = 10; // Adjust file size limit as necessary
 
       if (!allowedExtensions.includes(fileExtension)) {
-        alert('Invalid file type. Only .xlsx files are allowed.');
+        alert('Invalid file type. Only .xlsx and .csv files are allowed.');
         return false;
       }
 
