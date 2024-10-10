@@ -91,7 +91,7 @@
     function validateFile(file) {
       const allowedExtensions = ['xlsx', 'csv'];
       const fileExtension = file.name.split('.').pop().toLowerCase();
-      const maxSizeInMB = 10; // Adjust file size limit as necessary
+      const maxSizeInMB = 100; // Adjust file size limit as necessary
 
       if (!allowedExtensions.includes(fileExtension)) {
         alert('Invalid file type. Only .xlsx and .csv files are allowed.');
